@@ -12,3 +12,6 @@ hello-nostd-nopie: hello-syscall.c Makefile
 
 hello-data: hello-data.c Makefile
 	gcc -T hello.ld -no-pie -nostdlib -Wl,-e,startup -Wl,--build-id=none -fcf-protection=none -fno-stack-protector -fno-asynchronous-unwind-tables -fno-unwind-tables -o build/$@ $<
+
+hello-cpp: hello-cpp.cpp hello-cpp.ld Makefile
+	gcc --std=c++23 -g -T hello-cpp.ld -no-pie -nostdlib --no-exceptions -Wl,-e,startup -Wl,--build-id=none -fcf-protection=none -fno-stack-protector -fno-asynchronous-unwind-tables -fno-unwind-tables -o build/$@ $<
